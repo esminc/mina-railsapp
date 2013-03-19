@@ -8,9 +8,9 @@ Gem::Specification.new do |spec|
   spec.version       = Mina::Railsapp::VERSION
   spec.authors       = ["dot"]
   spec.email         = ["shuhei.kondo@gmail.com"]
-  spec.description   = %q{TODO: Write a gem description}
-  spec.summary       = %q{TODO: Write a gem summary}
-  spec.homepage      = ""
+#  spec.description   = %q{TODO: Write a gem description}
+  spec.summary       = %q{mina recipes for deploying railsapp}
+  spec.homepage      = "https://github.com/esminc/mina-railsapp"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files`.split($/)
