@@ -1,0 +1,23 @@
+server {
+  listen 80;
+  server_name <%= nginx_server_name %>;
+
+  root <%= deploy_to %>/current/public;
+  error_log <%= nginx_error_log %>;
+  access_log <%= nginx_access_log %>;
+
+  try_files $uri $uri.html $uri/index.html @unicorn;
+
+  location ~ ^/assets/ {
+    expires 10y;
+  }
+
+  location @unicorn {
+    proxy_set_header X-Real-IP  $remote_addr;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header Host $http_host;
+    proxy_redirect off;
+
+    proxy_pass http://unix:<%= unicorn_socket %>;
+  }
+}

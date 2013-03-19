@@ -1,6 +1,6 @@
 worker_processes <%= unicorn_worker_processes %>
 working_directory "<%= deploy_to %>/current"
-listen "<%= deploy_to %>/shared/tmp/sockets/unicorn.sock", :backlog => 1
+listen "<%= unicorn_socket %>", :backlog => 1
 
 pid                "<%= unicorn_pid %>"
 stderr_path        "<%= deploy_to %>/shared/log/unicorn.log"

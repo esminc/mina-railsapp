@@ -1,12 +1,12 @@
 set_default :unicorn_worker_processes, 2
-set_default :unicorn_pid, "#{deploy_to}/shared/tmp/pids/unicorn.pid"
-
+set_default :unicorn_pid, -> { "#{deploy_to}/shared/tmp/pids/unicorn.pid" }
+set_default :unicorn_socket, -> { "#{deploy_to}/shared/tmp/sockets/unicorn.sock" }
 
 namespace :unicorn do
   desc 'Generate unicorn configure file'
   task :configure do
     queue! %{
-      cat << EOF > #{deploy_to}/shared/config/unicorn.rb
+      cat << 'EOF' > #{deploy_to}/shared/config/unicorn.rb
 #{erb(File.expand_path('../../../../templates/unicorn.rb.erb', __FILE__))}
 EOF
     }
