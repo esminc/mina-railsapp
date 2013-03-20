@@ -1,15 +1,12 @@
 require 'mina/railsapp/unicorn'
 
-set_default :nginx_server_name, -> { domain }
+set_default :nginx_server_name,     -> { domain }
 set_default :nginx_sites_available, -> { "/etc/nginx/sites-available/#{nginx_server_name}" }
-set_default :nginx_sites_enabled, -> { "/etc/nginx/sites-enabled/#{nginx_server_name}" }
-set_default :nginx_init_scipt, '/etc/init.d/nginx'
-
-set_default :nginx_error_log, -> { "/var/log/nginx/#{nginx_server_name}_error.log" }
-set_default :nginx_access_log, -> { "/var/log/nginx/#{nginx_server_name}_access.log" }
+set_default :nginx_sites_enabled,   -> { "/etc/nginx/sites-enabled/#{nginx_server_name}" }
+set_default :nginx_error_log,       -> { "/var/log/nginx/#{nginx_server_name}_error.log" }
+set_default :nginx_access_log,      -> { "/var/log/nginx/#{nginx_server_name}_access.log" }
 
 namespace :nginx do
-
   desc 'Generate nginx configuration file'
   task :configure do
     queue! %{
@@ -26,6 +23,4 @@ EOF
       sudo nginx -s reload
     }
   end
-
 end
-
