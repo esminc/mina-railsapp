@@ -3,8 +3,8 @@ working_directory "<%= deploy_to %>/current"
 listen "<%= unicorn_socket %>", :backlog => 1
 
 pid                "<%= unicorn_pid %>"
-stderr_path        "<%= deploy_to %>/shared/log/unicorn.log"
-stdout_path        "<%= deploy_to %>/shared/log/unicorn.log"
+stderr_path        "<%= unicorn_log %>"
+stdout_path        "<%= unicorn_log %>"
 
 timeout 30
 

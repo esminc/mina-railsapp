@@ -1,0 +1,18 @@
+<%= unicorn_log %> <%= app_path %>/<%= rails_env%>.log {
+    # this first block is mostly just personal preference, though
+    # I wish logrotate offered an "hourly" option...
+    <%= logrotate_freq %>
+    missingok
+    rotate <%= logrotate_rotate %>
+    compress # must use with delaycompress below
+    dateext
+
+    # this is important if using "compress" since we need to call
+    # the "lastaction" script below before compressing:
+    delaycompress
+
+    lastaction
+        pid=<%= unicorn_pid %>
+        test -s $pid && kill -USR1 "$(cat $pid)"
+    endscript
+}

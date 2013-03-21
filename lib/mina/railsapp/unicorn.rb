@@ -1,6 +1,7 @@
 set_default :unicorn_worker_processes, 2
-set_default :unicorn_pid,              -> { "#{deploy_to}/shared/tmp/pids/unicorn.pid" }
-set_default :unicorn_socket,           -> { "#{deploy_to}/shared/tmp/sockets/unicorn.sock" }
+set_default :unicorn_pid,    -> { "#{deploy_to}/shared/tmp/pids/unicorn.pid" }
+set_default :unicorn_socket, -> { "#{deploy_to}/shared/tmp/sockets/unicorn.sock" }
+set_default :unicorn_log,    -> { "#{deploy_to}/shared/log/unicorn.log" }
 
 namespace :unicorn do
   desc 'Generate unicorn configure file'
